@@ -33,5 +33,5 @@ app.get('/data',(req,res)=>{
 })
 
 app.listen(5000, ()=>{
-    console.log("Port connected1")
+    console.log("Port connectedd")
 })
