@@ -1,18 +1,18 @@
 pipeline {
     agent any
     
+    environment {
+        SONAR_SCANNER_HOME = tool 'SonarQubeScanner'
+    }
+    
     stages {
-        stage('Install dependencies') {
-            steps{
-                sh 'npm install'
-            }
-        }
-        
         stage('SonarQube analysis') {
             steps {
-                
-                withSonarQubeEnv('SonarQube Server') {
-                    sh '/path/to/sonar-scanner/bin/sonar-scanner' 
+                script {
+                    // Run SonarQube analysis
+                    withSonarQubeEnv('SonarQube Server') {
+                        sh "${SONAR_SCANNER_HOME}/bin/sonar-scanner"
+                    }
                 }
             }
         }
@@ -20,11 +20,11 @@ pipeline {
     
     post {
         success {
-           
+            // If the build is successful, you can do further actions here
             echo 'Build successful!'
         }
         failure {
-            
+            // If the build fails, you can do further actions here
             echo 'Build failed!'
         }
     }
