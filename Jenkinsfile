@@ -1,23 +1,32 @@
 pipeline {
     agent any
-
-    tools {
-        // Define SonarQube Scanner tool
-        sonarqubeScanner 'SonarQubeScanner'
+    
+    environment {
+        SONAR_SCANNER_HOME = tool 'SonarQubeScanner' // Defining SonarQube Scanner tool
+        SONAR_TOKEN = credentials('sonar-new') // You need to configure SonarQube token in Jenkins credentials
     }
-
+    
     stages {
-        stage('SonarQube analysis') {
+        stage('Prepare') {
             steps {
                 script {
-                    // Run SonarQube analysis
-                    // withSonarQubeEnv('SonarQubeServer') {
-                    //     sh "${sonarqubeScanner}/bin/sonar-scanner"
-                    echo "${tool 'SonarQubeScanner'}"
+                    // Download and extract SonarQube Scanner
+                    def scannerHome = tool 'SonarQubeScanner'
+                    env.PATH = "${scannerHome}/bin:${env.PATH}"
                 }
             }
         }
-        // Other stages of your pipeline...
+        
+        stage('SonarQube Analysis') {
+            steps {
+                script {
+                    withSonarQubeEnv('SonarQubeServer') {
+                        sh 'sonar-scanner -Dsonar.projectKey=brand_new -Dsonar.sources=. -Dsonar.host.url=http://3.109.1.98:9001 -Dsonar.login=${SONAR_TOKEN}'
+                    }
+                }
+            }
+        }
     }
-    // Post-build actions, etc.
+
+
 }
