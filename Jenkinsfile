@@ -11,7 +11,7 @@ pipeline {
                 script {
                     // Run SonarQube analysis
                     withSonarQubeEnv('Sonar-new') {
-                        sh "${SONAR_SCANNER_HOME}/bin/sonar-scanner"
+                        sh "${env.SONAR_SCANNER_HOME}/bin/sonar-scanner"
                     }
                 }
             }
