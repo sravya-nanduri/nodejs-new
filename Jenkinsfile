@@ -1,23 +1,23 @@
 pipeline {
     agent any
 
-   tools {
+    tools {
         // Define SonarQube Scanner tool
         sonarqubeScanner 'SonarQubeScanner'
     }
-    
 
     stages {
         stage('SonarQube analysis') {
             steps {
                 script {
-                    // // Run SonarQube analysis
+                    // Run SonarQube analysis
                     // withSonarQubeEnv('SonarQubeServer') {
                     //     sh "${sonarqubeScanner}/bin/sonar-scanner"
-                    echo "${sonarqubeScanner}"
-                    }
+                    echo "${tool 'SonarQubeScanner'}"
                 }
             }
         }
+        // Other stages of your pipeline...
     }
-// }
+    // Post-build actions, etc.
+}
