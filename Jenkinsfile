@@ -12,9 +12,7 @@ pipeline {
                 script {
                     // Download and extract SonarQube Scanner
                     def scannerHome = tool 'sonarqube-scanner'
-                    println "SonarQube Scanner Home: ${scannerHome}"
                     env.PATH = "${scannerHome}/bin:${env.PATH}"
-                    println "Updated PATH: ${env.PATH}"
                 }
             }
         }
