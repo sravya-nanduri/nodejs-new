@@ -11,7 +11,7 @@ pipeline {
                 script {
                     // Run SonarQube analysis
                     withSonarQubeEnv('Sonar-new') {
-                        sh "${env.SONAR_SCANNER_HOME}/bin/sonar-scanner"
+                        sh '/var/lib/jenkins/tools/hudson.plugins.sonar.SonarRunnerInstallation/SonarQubeScanner/bin/sonar-scanner'
                     }
                 }
             }
