@@ -21,12 +21,12 @@ pipeline {
             steps {
                 script {
                     withSonarQubeEnv('SonarQubeServer') {
-                        sh 'sonar-scanner -Dsonar.projectKey=brand_new -Dsonar.sources=. -Dsonar.host.url=http://3.109.1.98:9001 -Dsonar.login=${SONAR_TOKEN}'
+                        maskPasswords {
+                            sh 'sonar-scanner -Dsonar.projectKey=brand_new -Dsonar.sources=. -Dsonar.host.url=http://3.109.1.98:9001 -Dsonar.login=${SONAR_TOKEN}'
+                        }
                     }
                 }
             }
         }
     }
-    
-  
 }
