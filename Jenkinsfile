@@ -10,7 +10,7 @@ pipeline {
             steps {
                 script {
                     // Run SonarQube analysis
-                    withSonarQubeEnv('SonarQube Server') {
+                    withSonarQubeEnv('SonarQubeServer') {
                         sh "${SONAR_SCANNER_HOME}/bin/sonar-scanner"
                     }
                 }
