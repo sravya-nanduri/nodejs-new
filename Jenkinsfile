@@ -10,8 +10,8 @@ pipeline {
             steps {
                 script {
                     // Run SonarQube analysis
-                    withSonarQubeEnv('SonarQubeScanner') {
-                        sh '/var/lib/jenkins/tools/hudson.plugins.sonar.SonarRunnerInstallation/SonarQubeScanner/bin/sonar-scanner'
+                    withSonarQubeEnv('SonarQube Server') {
+                        sh "${SONAR_SCANNER_HOME}/bin/sonar-scanner"
                     }
                 }
             }
