@@ -21,7 +21,11 @@ pipeline {
             steps {
                 script {
                     withSonarQubeEnv('SonarQubeServer') {
-                        sh 'sonar-scanner -Dsonar.projectKey=brand_new -Dsonar.sources=. -Dsonar.host.url=http://3.109.1.98:9001 -Dsonar.login=${SONAR_TOKEN}'
+                        sh 'sonar-scanner \
+  -Dsonar.projectKey=New \
+  -Dsonar.sources=. \
+  -Dsonar.host.url=http://13.201.79.82:9000 \
+  -Dsonar.login=61333a0ab96f244f0eb65d41829930d395804f09'
                     }
                 }
             }
