@@ -7,7 +7,7 @@ pipeline {
         // Add SonarQube token as a credential
         SONAR_TOKEN = credentials('sonar-new')
         // Add SonarQube Scanner's bin directory to the PATH
-        PATH = "${env.SONAR_SCANNER_HOME}/bin:${env.PATH}"
+        PATH = "${SONAR_SCANNER_HOME}/bin:${PATH}"
     }
     
     stages {
@@ -16,11 +16,11 @@ pipeline {
                 script {
                     // Execute SonarQube scanner command
                     withSonarQubeEnv('SonarQubeServer') {
-                        sh 'sonar-scanner \
+                        sh "sonar-scanner \
                             -Dsonar.projectKey=New \
                             -Dsonar.sources=. \
                             -Dsonar.host.url=http://13.201.79.82:9000 \
-                            -Dsonar.login=${env.SONAR_TOKEN}'
+                            -Dsonar.login=${SONAR_TOKEN}"
                     }
                 }
             }
