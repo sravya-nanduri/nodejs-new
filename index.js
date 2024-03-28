@@ -22,11 +22,11 @@ let data = [
         id : 4,
         msg : "1"
     },
-//     {
-//         id : 5,
-//         msg : "1"
-//     },
-// ]
+    {
+        id : 5,
+        msg : "1"
+    },
+]
 
 app.get('/data',(req,res)=>{
     res.status(200).json({data : data})
